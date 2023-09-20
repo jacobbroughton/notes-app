@@ -38,9 +38,7 @@ const Home = () => {
   const titleFieldRef = useRef<HTMLInputElement>(null);
   const bodyFieldRef = useRef<HTMLDivElement>(null);
   const [noTitleWarningToggled, setNoTitleWarningToggled] = useState<boolean>(false);
-  const [noTitleWarningTimeout, setNoTitleWarningTimeout] = useState<
-    number | undefined
-  >();
+  const [noTitleWarningTimeout, setNoTitleWarningTimeout] = useState<NodeJS.Timeout>();
   const [titleTooLong, setTitleTooLong] = useState(false);
   const [bodyTooLong, setBodyTooLong] = useState(false);
   const [error, setError] = useState<null | string>(null);

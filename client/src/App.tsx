@@ -26,17 +26,17 @@ function App() {
 
   // alert(`${browser?.name} ${browser?.os} ${browser?.version} ${browser?.type}`);
 
-  if (
-    browser?.name === "safari" ||
-    browser?.name === "ios" ||
-    browser?.name === "crios"
-  ) {
-    return <WrongBrowser />;
-  }
+  // if (
+  //   browser?.name === "safari" ||
+  //   browser?.name === "ios" ||
+  //   browser?.name === "crios"
+  // ) {
+  //   return <WrongBrowser />;
+  // }
 
-  if (windowSize.width < 600) {
-    return <WindowTooSmall/>
-  }
+  // if (windowSize.width < 600) {
+  //   return <WindowTooSmall/>
+  // }
 
   return (
     <div className="App">

@@ -101,6 +101,7 @@ function Sidebar() {
         method: "POST",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         credentials: "include",
         body: JSON.stringify({
@@ -145,6 +146,7 @@ function Sidebar() {
         method: "POST",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         credentials: "include",
         body: JSON.stringify({
@@ -288,10 +290,12 @@ function Sidebar() {
         fetch(`${getApiUrl()}/folders/`, {
           method: "GET",
           credentials: "include",
+          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
         }),
         fetch(`${getApiUrl()}/pages/`, {
           method: "GET",
           credentials: "include",
+          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
         }),
       ]);
 
@@ -343,6 +347,7 @@ function Sidebar() {
         method: "POST",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000"
         },
         credentials: "include",
         body: JSON.stringify({

@@ -30,6 +30,7 @@ export function DeleteModal() {
         method: "post",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000" 
         },
         credentials: "include",
         body: JSON.stringify({
@@ -65,6 +66,7 @@ export function DeleteModal() {
         method: "POST",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000"
         },
         credentials: "include",
         body: JSON.stringify({
@@ -98,6 +100,7 @@ export function DeleteModal() {
           method: "POST",
           headers: {
             "content-type": "application/json;charset=UTF-8",
+            "Access-Control-Allow-Origin": "http://localhost:3000" 
           },
           credentials: "include",
           body: JSON.stringify({
@@ -118,6 +121,7 @@ export function DeleteModal() {
           method: "POST",
           headers: {
             "content-type": "application/json;charset=UTF-8",
+            "Access-Control-Allow-Origin": "http://localhost:3000"
           },
           credentials: "include",
           body: JSON.stringify({ pages: items.filter((item) => item.IS_PAGE) }),

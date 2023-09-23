@@ -95,6 +95,7 @@ const TagsSidebarView = () => {
         credentials: "include",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000"
         },
         body: JSON.stringify(payload),
       });
@@ -133,6 +134,7 @@ const TagsSidebarView = () => {
         credentials: "include",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000"
         },
         body: JSON.stringify(payload),
       });
@@ -171,6 +173,7 @@ const TagsSidebarView = () => {
         credentials: "include",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000"
         },
         body: JSON.stringify(payload),
       });

@@ -61,6 +61,7 @@ const Home = () => {
     const response = await fetch(getApiUrl() + "/", {
       method: "GET",
       credentials: "include",
+      headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
     });
 
     const data = await response.json();
@@ -79,10 +80,12 @@ const Home = () => {
         fetch(`${getApiUrl()}/folders/`, {
           method: "GET",
           credentials: "include",
+          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
         }),
         fetch(`${getApiUrl()}/pages/`, {
           method: "GET",
           credentials: "include",
+          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
         }),
       ]);
 
@@ -117,6 +120,7 @@ const Home = () => {
       let response = await fetch(`${getApiUrl()}/tags/`, {
         method: "GET",
         credentials: "include",
+        headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
       });
 
       if (response.status !== 200) throw response.statusText;
@@ -133,6 +137,7 @@ const Home = () => {
       let response = await fetch(`${getApiUrl()}/tags/color-options/`, {
         method: "GET",
         credentials: "include",
+        headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
       });
 
       if (response.status !== 200) {
@@ -185,6 +190,7 @@ const Home = () => {
         credentials: "include",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         body: JSON.stringify({
           pageId: pages.active?.PAGE_ID,
@@ -248,6 +254,7 @@ const Home = () => {
         credentials: "include",
         headers: {
           "content-type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         body: JSON.stringify({
           parentFolderId: null,

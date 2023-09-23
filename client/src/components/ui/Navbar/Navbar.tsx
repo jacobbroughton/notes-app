@@ -40,6 +40,9 @@ const Navbar = () => {
     try {
       const response = await fetch(`${getApiUrl()}/logout/`, {
         credentials: "include",
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000"
+        }
       });
 
       if (response.status !== 200) throw response.statusText;

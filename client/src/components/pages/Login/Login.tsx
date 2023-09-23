@@ -20,11 +20,11 @@ const Login = () => {
 
     try {
       const response = await fetch(`${getApiUrl()}/login/`, {
-        mode: "cors",
-        method: "POST",
+        method: "post",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "http://localhost:3000"
         },
         credentials: "include",
         body: JSON.stringify({
@@ -32,6 +32,8 @@ const Login = () => {
           password,
         }),
       });
+
+      console.log(response)
 
       if (response.status !== 200) {
         throw "ERROR: " + response.statusText;
@@ -56,7 +58,7 @@ const Login = () => {
       if (typeof error === "string") {
         setLoginError(error);
       } else {
-        alert("There was an error logging in");
+        console.error(error);
       }
     }
   }

@@ -47,14 +47,20 @@ const Home = () => {
   const pages = useSelector((state: RootState) => state.pages);
   const folders = useSelector((state: RootState) => state.folders);
   const modals = useSelector((state: RootState) => state.modals);
-  let pageModified = false;
+  let activePageModified = false;
+  let unsavedPageModified = false
 
   if (pages.active) {
     if (
       pages.active.BODY !== pages.active.DRAFT_BODY ||
       pages.active?.NAME !== pages.active.DRAFT_NAME
     )
-      pageModified = true;
+      activePageModified = true;
+  }
+
+  if (pages.untitledPage.NAME !== "" ||
+  pages.untitledPage.BODY !== emptyEditorState) {
+    unsavedPageModified = true
   }
 
   async function testApi() {
@@ -342,11 +348,11 @@ const Home = () => {
   }
 
   function determineSavedStatus() {
-    if (pageModified && pages.active?.MODIFIED_DTTM) {
+    if (activePageModified && pages.active?.MODIFIED_DTTM) {
       return `You have unsaved changes, last saved ${getElapsedTime(
         pages.active?.MODIFIED_DTTM
       )}`;
-    } else if (pageModified && !pages.active?.MODIFIED_DTTM) {
+    } else if (activePageModified && !pages.active?.MODIFIED_DTTM) {
       return "You have unsaved changes";
     }
 
@@ -500,6 +506,7 @@ const Home = () => {
           </div>
 
           <Editor page={pages.untitledPage} bodyFieldRef={bodyFieldRef} />
+          <button className='save-button' disabled={!unsavedPageModified}>Save</button>
 
           {/* <textarea
             placeholder="Body"
@@ -525,7 +532,7 @@ const Home = () => {
               </div>
             )}
             <div
-              className={`status-indicator ${pageModified ? "unsaved" : "saved"}`}
+              className={`status-indicator ${activePageModified ? "unsaved" : "saved"}`}
               title={determineSavedStatus()}
             ></div>
             <input

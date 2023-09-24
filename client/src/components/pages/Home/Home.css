@@ -226,3 +226,30 @@
 .home-view .unsaved-warning-modal .buttons button.save-btn {
   background-color: var(--color-accent-primary);
 }
+
+.home-view .save-button {
+  width: 100%;
+  padding: 3px 10px;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.431);
+  border: 0;
+  border: 2px transparent solid;
+  box-shadow: var(--container-shadow);
+  border-radius: 3px;
+}
+
+.home-view .save-button:not(:disabled) {
+  background-color: #03c04a;
+}
+
+.home-view .save-button:disabled {
+  color: black;
+  background-color: transparent;
+  border: 2px solid var(--tertiary-bg);
+  text-shadow: none;
+}
+
+.home-view .save-button:active {
+  box-shadow: none;
+  transform: translateY(1px);
+}

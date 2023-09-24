@@ -228,7 +228,6 @@
 }
 
 .home-view .save-button {
-  width: 100%;
   padding: 5px 10px;
   font-weight: 600;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.431);
@@ -245,7 +244,7 @@
 }
 
 .home-view .save-button:disabled {
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--tertiary-bg);
   background-color: transparent;
   border: 2px solid var(--tertiary-bg);
   text-shadow: none;

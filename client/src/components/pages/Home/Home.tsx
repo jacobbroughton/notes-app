@@ -503,10 +503,11 @@ const Home = () => {
               autoComplete="off"
               tabIndex={1}
             />
+            <button className='save-button' disabled={!unsavedPageModified}>Save</button>
           </div>
 
           <Editor page={pages.untitledPage} bodyFieldRef={bodyFieldRef} />
-          <button className='save-button' disabled={!unsavedPageModified}>Save</button>
+          
 
           {/* <textarea
             placeholder="Body"

@@ -6,7 +6,7 @@
   box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
   z-index: 3;
   overflow: hidden;
-  min-width: 50px;
+  min-width: 45px;
 }
 
 .sidebar .sidebar-nav {
@@ -37,14 +37,14 @@
 }
 
 .sidebar .sidebar-nav > button {
-  padding: 15px;
+  padding: 12px;
   background-color: transparent;
   border: 0;
   width: 100%;
   height: 100%;
-  max-width: 50px;
+  max-width: 45px;
   /* cursor: pointer; */
-  max-height: 50px;
+  max-height: 45px;
   position: relative;
 }
 
@@ -72,11 +72,15 @@
   transition: 0.1s ease fill;
 }
 
+.sidebar .sidebar-nav > button.sidebar-toggle-button {
+  cursor: pointer;
+}
+
 .sidebar .sidebar-nav > button.theme-button {
   padding: 10px;
   font-size: 1.3rem;
   position: absolute;
-  bottom: 50px;
+  bottom: 45px;
   cursor: pointer;
 }
 
@@ -104,7 +108,6 @@
   display: flex;
   align-items: center;
   background-color: var(--color-sidebar-nav);
-/* font-size: 0.875rem; */
 }
 
 .sidebar .sidebar-body .current-view p {
@@ -146,7 +149,7 @@
   position: absolute;
   top: 35px;
   right: 0;
-  left: 50px;
+  left: 45px;
   bottom: 0;
   height: calc(100% - 35px);
   background-color: var(--primary-bg);

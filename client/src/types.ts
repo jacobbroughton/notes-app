@@ -188,6 +188,7 @@ export type SidebarState = {
     id: number;
     name: string;
   }>;
+  toggled: boolean,
   searchValue: string;
   shiftClickItems: {
     start: number | null;

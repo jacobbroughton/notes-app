@@ -17,7 +17,7 @@ function App() {
   const sidebar = useSelector((state: RootState) => state.sidebar);
   const user = useSelector((state: RootState) => state.user);
   const theme = useSelector((state: RootState) => state.theme);
-  const windowSize = useWindowSize()
+  const windowSize = useWindowSize();
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -37,11 +37,17 @@ function App() {
   // if (windowSize.width < 600) {
   //   return <WindowTooSmall/>
   // }
+  let marginLeft = '0'
+  if (user) marginLeft = '45'
 
   return (
     <div className="App">
       {user && <Sidebar />}
-      <main style={{ marginLeft: user ? `${sidebar.width}px` : "0" }}>
+      <main
+        style={{
+          marginLeft: user ? `${sidebar.toggled ? sidebar.width + 45 : 45 }px` : "0",
+        }}
+      >
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<AuthenticatedRoutes />}>

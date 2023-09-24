@@ -20,7 +20,7 @@ const viewOptionsForState = [
 const initialState: SidebarState = {
   width: 225,
   view: viewOptionsForState[0],
-  toggled: true,
+  toggled: window.innerWidth > 600,
   viewOptions: viewOptionsForState,
   searchValue: "",
   shiftClickItems: { start: null, end: null, list: [] },

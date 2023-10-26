@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useRef, Context, useCallback, MutableRefObject } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Context,
+  useCallback,
+  MutableRefObject,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setFolders,
@@ -84,7 +91,7 @@ function Sidebar() {
         const unitsFromLeft =
           mouseMoveEvent.clientX - sidebarRef.current.getBoundingClientRect().left;
         if (unitsFromLeft >= 40) dispatch(setSidebarWidth(unitsFromLeft));
-        console.log("wassup", unitsFromLeft)
+        console.log("wassup", unitsFromLeft);
       }
     },
     [isResizingSidebar]
@@ -544,6 +551,7 @@ function Sidebar() {
         <button
           onClick={() => dispatch(setSidebarToggled(!sidebar.toggled))}
           className="sidebar-toggle-button"
+          title={`Toggle Sidebar ${sidebar.toggled ? "Off" : "On"}`}
         >
           {sidebar.toggled ? <DoubleArrowLeft /> : <DoubleArrowRight />}
         </button>

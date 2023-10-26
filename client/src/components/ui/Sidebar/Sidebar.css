@@ -76,6 +76,12 @@
   cursor: pointer;
 }
 
+.sidebar .sidebar-nav > button.sidebar-toggle-button:hover,
+.sidebar .sidebar-nav > button.theme-button:hover,
+.sidebar .sidebar-nav > button.user-button:hover {
+  background-color: var(--tertiary-bg);
+}
+
 .sidebar .sidebar-nav > button.theme-button {
   padding: 10px;
   font-size: 1.3rem;
@@ -142,7 +148,7 @@
 }
 
 .sidebar .header p {
-/* font-size: 0.875rem; */
+  /* font-size: 0.875rem; */
 }
 
 .sidebar .sidebar-overlay {

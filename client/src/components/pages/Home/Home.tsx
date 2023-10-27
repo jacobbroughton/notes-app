@@ -174,6 +174,7 @@ const Home = () => {
       return;
     }
 
+    console.log("Submitting");
     editPage();
   }
 
@@ -240,8 +241,6 @@ const Home = () => {
       }
       return;
     }
-
-    console.log(pages.untitledPage);
 
     if (!pages.untitledPage.NAME) {
       bodyFieldRef.current?.blur();
@@ -523,7 +522,6 @@ const Home = () => {
             data-gramm_editor="false"
             data-enable-grammarly="false"
             className={bodyTooLong ? "error" : ""}
-            onMouseDown={(e) => console.log(e)}
           />
         </form>
       )}
@@ -551,6 +549,9 @@ const Home = () => {
               autoComplete="off"
               tabIndex={1}
             />
+            <button className="save-button" disabled={!activePageModified}>
+              Save
+            </button>
           </div>
 
           <textarea

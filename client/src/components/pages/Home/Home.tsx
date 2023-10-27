@@ -29,14 +29,12 @@ import OpenPageNavigation from "../../ui/OpenPageNavigation/OpenPageNavigation";
 import { FolderState, PageState } from "../../../types";
 import { RootState } from "../../../redux/store";
 import { getApiUrl } from "../../../utils/getUrl";
-import Editor from "../../ui/Editor/Editor";
-import { emptyEditorState } from "../../../utils/editorUtils";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const titleFieldRef = useRef<HTMLInputElement>(null);
-  const bodyFieldRef = useRef<HTMLDivElement>(null);
+  const bodyFieldRef = useRef<HTMLTextAreaElement>(null);
   const [noTitleWarningToggled, setNoTitleWarningToggled] = useState<boolean>(false);
   const [noTitleWarningTimeout, setNoTitleWarningTimeout] = useState<NodeJS.Timeout>();
   const [titleTooLong, setTitleTooLong] = useState(false);
@@ -48,7 +46,7 @@ const Home = () => {
   const folders = useSelector((state: RootState) => state.folders);
   const modals = useSelector((state: RootState) => state.modals);
   let activePageModified = false;
-  let unsavedPageModified = false
+  let unsavedPageModified = false;
 
   if (pages.active) {
     if (
@@ -58,9 +56,12 @@ const Home = () => {
       activePageModified = true;
   }
 
-  if (pages.untitledPage.NAME !== "" ||
-  pages.untitledPage.BODY !== emptyEditorState) {
-    unsavedPageModified = true
+  if (
+    pages.untitledPage.NAME !== "" ||
+    pages.untitledPage.BODY !==
+      "" /*// TODO - was 'emptyEditorState', empty string probably isnt right*/
+  ) {
+    unsavedPageModified = true;
   }
 
   async function testApi() {
@@ -265,7 +266,9 @@ const Home = () => {
         body: JSON.stringify({
           parentFolderId: null,
           newPageName: pages.untitledPage.NAME.trim(),
-          newPageBody: pages.untitledPage.BODY.trim() || emptyEditorState,
+          newPageBody:
+            pages.untitledPage.BODY.trim() ||
+            "" /* // TODO - was 'emptyEditorState', empty string probably isnt right*/,
         }),
       });
 
@@ -482,8 +485,7 @@ const Home = () => {
             )}
             <div
               className={`status-indicator ${
-                pages.untitledPage.NAME !== "" ||
-                pages.untitledPage.BODY !== emptyEditorState
+                pages.untitledPage.NAME !== "" || pages.untitledPage.BODY !== "" // TODO - was 'emptyEditorState', empty string probably isnt right
                   ? "unsaved"
                   : "saved"
               }`}
@@ -503,13 +505,14 @@ const Home = () => {
               autoComplete="off"
               tabIndex={1}
             />
-            <button className='save-button' disabled={!unsavedPageModified}>Save</button>
+            <button className="save-button" disabled={!unsavedPageModified}>
+              Save
+            </button>
           </div>
 
-          <Editor page={pages.untitledPage} bodyFieldRef={bodyFieldRef} />
-          
+          {/* <Editor page={pages.untitledPage} bodyFieldRef={bodyFieldRef} /> */}
 
-          {/* <textarea
+          <textarea
             placeholder="Body"
             value={pages.untitledPage.BODY}
             spellCheck="false"
@@ -521,7 +524,7 @@ const Home = () => {
             data-enable-grammarly="false"
             className={bodyTooLong ? "error" : ""}
             onMouseDown={(e) => console.log(e)}
-          /> */}
+          />
         </form>
       )}
       {pages.active && (
@@ -550,7 +553,7 @@ const Home = () => {
             />
           </div>
 
-          {/* <textarea
+          <textarea
             placeholder="Body"
             value={pages.active.DRAFT_BODY}
             spellCheck="false"
@@ -560,8 +563,8 @@ const Home = () => {
             data-gramm_editor="false"
             data-enable-grammarly="false"
             className={bodyTooLong ? "error" : ""}
-          /> */}
-          <Editor page={pages.active} bodyFieldRef={bodyFieldRef} />
+          />
+          {/* <Editor page={pages.active} bodyFieldRef={bodyFieldRef} /> */}
           <div className="page-path">
             /&nbsp;
             {determinePath(pages.active).map((folder: FolderState, i: number) => (

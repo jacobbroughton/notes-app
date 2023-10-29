@@ -24,7 +24,7 @@ const Login = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "http://localhost:3000"
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         credentials: "include",
         body: JSON.stringify({
@@ -33,7 +33,7 @@ const Login = () => {
         }),
       });
 
-      console.log(response)
+      console.log(response);
 
       if (response.status !== 200) {
         throw "ERROR: " + response.statusText;
@@ -54,11 +54,11 @@ const Login = () => {
       if (loginError) setLoginError("");
       dispatch(setUser(data.user));
       navigate("/");
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        setLoginError(error);
-      } else {
-        console.error(error);
+    } catch (e) {
+      if (typeof e === "string") {
+        setLoginError(e);
+      } else if (e instanceof Error) {
+        setLoginError(e.message);
       }
     }
   }

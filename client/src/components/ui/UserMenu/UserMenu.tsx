@@ -47,11 +47,11 @@ const UserMenu = ({
       dispatch(resetColorPickerMenuState());
       setUserMenuToggled(false);
       navigate("/login");
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error logging out");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }

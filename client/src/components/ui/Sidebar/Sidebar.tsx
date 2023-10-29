@@ -143,11 +143,11 @@ function Sidebar() {
       dispatch(setNewFolderName(""));
       resetContextMenu();
       getData();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error adding the new folder");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -188,11 +188,11 @@ function Sidebar() {
       dispatch(setNewPageName(""));
       resetContextMenu();
       getData();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error creating the new page");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -334,11 +334,11 @@ function Sidebar() {
       dispatch(setFolders(formattedFolders));
       dispatch(setPages(formattedPages));
       dispatch(setSidebarLoading(false));
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error getting folders and pages");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -381,11 +381,11 @@ function Sidebar() {
           setFavoriteStatus({ favoriteStatus: item.IS_FAVORITE ? 0 : 1, page: item })
         );
       resetContextMenu();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error adding the item to your favorites");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -579,7 +579,6 @@ function Sidebar() {
         <button
           className={`floating-sidebar-button ${sidebar.floating ? "toggled" : ""}`}
           onClick={() => {
-    
             dispatch(setSidebarFloating(!sidebar.floating));
           }}
           title="Set Sidebar to 'Floating' Mode"

@@ -104,11 +104,11 @@ const ItemListItem = ({
       dispatch(setRenameInputToggled(false));
       dispatch(setNewNameForRename(""));
       renameInputRef.current?.blur();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error renaming the item");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }

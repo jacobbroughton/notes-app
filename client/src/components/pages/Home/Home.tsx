@@ -117,8 +117,12 @@ const Home = () => {
       dispatch(setFolders(formattedFolders));
       dispatch(setPages(formattedPages));
       dispatch(setSidebarLoading(false));
-    } catch (error: unknown) {
-      setError(error as string);
+    } catch (e) {
+      if (typeof e === "string") {
+        setError(e);
+      } else if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   }
 
@@ -134,8 +138,12 @@ const Home = () => {
 
       let tagsData = await response.json();
       dispatch(setTags(tagsData.tags));
-    } catch (error: unknown) {
-      setError(error as string);
+    } catch (e) {
+      if (typeof e === "string") {
+        setError(e);
+      } else if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   }
 
@@ -158,8 +166,12 @@ const Home = () => {
           userCreatedOptions: colorOptionsData.userCreatedOptions,
         })
       );
-    } catch (error: unknown) {
-      setError(error as string);
+    } catch (e) {
+      if (typeof e === "string") {
+        setError(e);
+      } else if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   }
 
@@ -222,8 +234,12 @@ const Home = () => {
         dispatch(selectFolder(null));
         dispatch(toggleModal("unsavedWarning"));
       }
-    } catch (error: unknown) {
-      setError(error as string);
+    } catch (e) {
+      if (typeof e === "string") {
+        setError(e);
+      } else if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   }
 
@@ -281,8 +297,12 @@ const Home = () => {
       setNoTitleWarningToggled(false);
       getData();
       dispatch(resetUntitledPage(null));
-    } catch (error: unknown) {
-      setError(error as string);
+    } catch (e) {
+      if (typeof e === "string") {
+        setError(e);
+      } else if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   }
 

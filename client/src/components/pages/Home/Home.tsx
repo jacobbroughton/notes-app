@@ -452,6 +452,7 @@ const Home = () => {
     pages.untitledPage.NAME,
   ]);
 
+  // TODO - uncomment this
   if (loading && !user) {
     return (
       <div className="loading-view">
@@ -460,6 +461,12 @@ const Home = () => {
           The initial load may take longer than expected due to the server spinning down
           after not being used for a while.
         </p>
+        {error && (
+          <div className="error">
+            <p>There was an error</p>
+            <code>{error}</code>
+          </div>
+        )}
       </div>
     );
   }

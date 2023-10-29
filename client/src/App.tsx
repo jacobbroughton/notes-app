@@ -37,15 +37,23 @@ function App() {
   // if (windowSize.width < 600) {
   //   return <WindowTooSmall/>
   // }
-  let marginLeft = '0'
-  if (user) marginLeft = '45'
+
+  let marginLeft = 0;
+  if (!user) {
+  }
+
+  function determineMarginLeft(user: object | null) {
+    if (!user) return 0;
+    if (sidebar.floating) return 45
+    return sidebar.toggled ? sidebar.width + 45 : 45;
+  }
 
   return (
     <div className="App">
       {user && <Sidebar />}
       <main
         style={{
-          marginLeft: user ? `${sidebar.toggled ? sidebar.width + 45 : 45 }px` : "0",
+          marginLeft: `${determineMarginLeft(user)}px`,
         }}
       >
         <Routes>

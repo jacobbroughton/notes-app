@@ -40,8 +40,12 @@ const Login = () => {
         pathname: "/login",
         search: `?redirectedFrom=register&message=Account '${username}' has been created&status=success`,
       });
-    } catch (error: unknown) {
-      setRegisterError(error as string);
+    } catch (e) {
+      if (typeof e === "string") {
+        setRegisterError(e);
+      } else if (e instanceof Error) {
+        setRegisterError(e.message);
+      }
     }
   }
 

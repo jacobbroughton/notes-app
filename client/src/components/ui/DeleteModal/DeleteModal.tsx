@@ -30,7 +30,7 @@ export function DeleteModal() {
         method: "post",
         headers: {
           "content-type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "http://localhost:3000" 
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         credentials: "include",
         body: JSON.stringify({
@@ -51,11 +51,11 @@ export function DeleteModal() {
         });
       });
       dispatch(toggleModal("deleteModal"));
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error deleting the custom color");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -66,7 +66,7 @@ export function DeleteModal() {
         method: "POST",
         headers: {
           "content-type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "http://localhost:3000"
+          "Access-Control-Allow-Origin": "http://localhost:3000",
         },
         credentials: "include",
         body: JSON.stringify({
@@ -79,11 +79,11 @@ export function DeleteModal() {
       await response.json();
       dispatch(setPageEffStatus(pageId));
       dispatch(toggleModal("deleteModal"));
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error deleting the page");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -100,7 +100,7 @@ export function DeleteModal() {
           method: "POST",
           headers: {
             "content-type": "application/json;charset=UTF-8",
-            "Access-Control-Allow-Origin": "http://localhost:3000" 
+            "Access-Control-Allow-Origin": "http://localhost:3000",
           },
           credentials: "include",
           body: JSON.stringify({
@@ -121,7 +121,7 @@ export function DeleteModal() {
           method: "POST",
           headers: {
             "content-type": "application/json;charset=UTF-8",
-            "Access-Control-Allow-Origin": "http://localhost:3000"
+            "Access-Control-Allow-Origin": "http://localhost:3000",
           },
           credentials: "include",
           body: JSON.stringify({ pages: items.filter((item) => item.IS_PAGE) }),
@@ -137,11 +137,11 @@ export function DeleteModal() {
       }
       dispatch(setShiftClickItems({ start: null, end: null, list: [] }));
       dispatch(toggleModal("deleteModal"));
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error deleting multiple pages");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }

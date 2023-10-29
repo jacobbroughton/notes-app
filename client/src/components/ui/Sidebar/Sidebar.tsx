@@ -26,6 +26,7 @@ import {
   setNewFolderName,
   setSidebarLoading,
   setSidebarToggled,
+  setSidebarFloating,
 } from "../../../redux/sidebar";
 import { formatFolders, formatPages } from "../../../utils/formatData";
 import { toggleModal } from "../../../redux/modals";
@@ -46,6 +47,7 @@ import { RootState } from "../../../redux/store";
 import { getApiUrl } from "../../../utils/getUrl";
 import DoubleArrowLeft from "../Icons/DoubleArrowLeft";
 import DoubleArrowRight from "../Icons/DoubleArrowRight";
+import FloatingWindowsIcon from "../Icons/FloatingWindowsIcon";
 
 function Sidebar() {
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -141,11 +143,11 @@ function Sidebar() {
       dispatch(setNewFolderName(""));
       resetContextMenu();
       getData();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error adding the new folder");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -186,11 +188,11 @@ function Sidebar() {
       dispatch(setNewPageName(""));
       resetContextMenu();
       getData();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error creating the new page");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -332,11 +334,11 @@ function Sidebar() {
       dispatch(setFolders(formattedFolders));
       dispatch(setPages(formattedPages));
       dispatch(setSidebarLoading(false));
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error getting folders and pages");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -379,11 +381,11 @@ function Sidebar() {
           setFavoriteStatus({ favoriteStatus: item.IS_FAVORITE ? 0 : 1, page: item })
         );
       resetContextMenu();
-    } catch (error: unknown) {
-      if (typeof error === "string") {
-        alert(error);
-      } else {
-        alert("There was an error adding the item to your favorites");
+    } catch (e) {
+      if (typeof e === "string") {
+        alert(e);
+      } else if (e instanceof Error) {
+        alert("ERROR: " + e.message);
       }
     }
   }
@@ -549,7 +551,9 @@ function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-nav">
         <button
-          onClick={() => dispatch(setSidebarToggled(!sidebar.toggled))}
+          onClick={() => {
+            dispatch(setSidebarToggled(!sidebar.toggled));
+          }}
           className="sidebar-toggle-button"
           title={`Toggle Sidebar ${sidebar.toggled ? "Off" : "On"}`}
         >
@@ -566,12 +570,20 @@ function Sidebar() {
         <button
           className="user-button"
           onClick={() => {
-            console.log("Hello");
             setUserMenuToggled(!userMenuToggled);
           }}
           title="User options"
         >
           <UserIcon />
+        </button>
+        <button
+          className={`floating-sidebar-button ${sidebar.floating ? "toggled" : ""}`}
+          onClick={() => {
+            dispatch(setSidebarFloating(!sidebar.floating));
+          }}
+          title="Set Sidebar to 'Floating' Mode"
+        >
+          <FloatingWindowsIcon />
         </button>
         {userMenuToggled && <UserMenu setUserMenuToggled={setUserMenuToggled} />}
       </div>
@@ -651,10 +663,7 @@ function Sidebar() {
           {sidebar.view.name === "Tags" && <TagsSidebarView />}
         </div>
       )}
-      <div
-        className={`drag-sidebar-button ${sidebar.dragToggled ? "active" : ""}`}
-        onMouseDown={startResizing}
-      ></div>
+
       <ContextMenu
         item={pages.active || folders.selected} // TODO - figure out how to determine which
         toggled={contextMenu.toggled}
@@ -745,6 +754,12 @@ function Sidebar() {
           },
         ]}
       />
+      <div
+        className={`drag-sidebar-button ${sidebar.dragToggled ? "active" : ""} ${
+          sidebar.toggled ? "" : "disabled"
+        }`}
+        onMouseDown={startResizing}
+      ></div>
     </aside>
   );
 }

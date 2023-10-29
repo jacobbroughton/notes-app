@@ -7,6 +7,34 @@
   z-index: 3;
   overflow: hidden;
   min-width: 45px;
+  /* border-right: #aaa 1px solid; */
+}
+
+.sidebar .drag-sidebar-button {
+  position: absolute;
+  right: 0;
+  width: 1px;
+  background-color: #555;
+  border: 0;
+  height: 100%;
+  z-index: 5;
+  cursor: e-resize;
+  transition: 0.1s ease background-color;
+  cursor: ew-resize;
+}
+
+.sidebar .drag-sidebar-button.disabled {
+  pointer-events: none;
+}
+
+.sidebar .drag-sidebar-button:not(.disabled):hover {
+  background-color: var(--color-accent-primary);
+}
+
+.sidebar .drag-sidebar-button:not(.disabled):active,
+.sidebar .drag-sidebar-button:not(.disabled).active {
+  width: 2px;
+  background-color: var(--color-accent-primary);
 }
 
 .sidebar .sidebar-nav {
@@ -78,8 +106,25 @@
 
 .sidebar .sidebar-nav > button.sidebar-toggle-button:hover,
 .sidebar .sidebar-nav > button.theme-button:hover,
-.sidebar .sidebar-nav > button.user-button:hover {
+.sidebar .sidebar-nav > button.user-button:hover,
+.sidebar .sidebar-nav > button.floating-sidebar-button:hover {
   background-color: var(--tertiary-bg);
+}
+
+.sidebar .sidebar-nav > button.floating-sidebar-button {
+  padding: 10px;
+  font-size: 1.3rem;
+  position: absolute;
+  bottom: 90px;
+  cursor: pointer;
+}
+
+.sidebar .sidebar-nav > button.floating-sidebar-button svg {
+  opacity: 0.5;
+}
+
+.sidebar .sidebar-nav > button.floating-sidebar-button.toggled svg {
+  opacity: 1;
 }
 
 .sidebar .sidebar-nav > button.theme-button {
@@ -161,30 +206,6 @@
   background-color: var(--primary-bg);
   opacity: 0.5;
   z-index: 2;
-}
-
-.sidebar .drag-sidebar-button {
-  position: absolute;
-  right: 0;
-  width: 1px;
-  background-color: var(--tertiary-bg);
-  border: 0;
-  height: calc(100% - 35px);
-  margin-top: 35px;
-  z-index: 5;
-  cursor: e-resize;
-  transition: 0.1s ease background-color;
-  cursor: ew-resize;
-}
-
-.sidebar .drag-sidebar-button:hover {
-  background-color: var(--color-accent-primary);
-}
-
-.sidebar .drag-sidebar-button:active,
-.sidebar .drag-sidebar-button.active {
-  width: 2px;
-  background-color: var(--color-accent-primary);
 }
 
 .sidebar .header .sidebar-header-buttons {

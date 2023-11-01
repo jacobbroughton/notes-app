@@ -50,7 +50,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* // TODO - uncomment */}
       {user && <Sidebar />}
+      {/* <Sidebar /> */}
       <main
         style={{
           marginLeft: `${determineMarginLeft(user)}px`,

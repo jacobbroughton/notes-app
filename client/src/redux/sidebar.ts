@@ -38,7 +38,10 @@ const initialState: SidebarState = {
   newPageName: "",
   newFolderName: "",
   loading: false,
-  floating: Boolean(localStorage.getItem("sidebar-floating-toggled")) || false,
+  floating:
+    window.innerWidth > 600
+      ? false
+      : Boolean(localStorage.getItem("sidebar-floating-toggled")) || false,
 };
 
 const sidebarSlice = createSlice({

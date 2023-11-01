@@ -56,6 +56,7 @@
 
 .sidebar .new-folder-form input,
 .sidebar .new-page-form input {
+  font-size: 1rem;
   width: calc(100% - 10px);
   background: var(--secondary-bg);
   border: 1px solid var(--color-accent-primary);
@@ -108,7 +109,8 @@
 .sidebar .sidebar-nav > button.theme-button:hover,
 .sidebar .sidebar-nav > button.user-button:hover,
 .sidebar .sidebar-nav > button.floating-sidebar-button:hover {
-  background-color: var(--tertiary-bg);
+  background-color: #444;
+  
 }
 
 .sidebar .sidebar-nav > button.floating-sidebar-button {
@@ -117,6 +119,7 @@
   position: absolute;
   bottom: 90px;
   cursor: pointer;
+  width: 44px;
 }
 
 .sidebar .sidebar-nav > button.floating-sidebar-button svg {
@@ -145,6 +148,7 @@
 
 .sidebar .sidebar-nav > button.user-button svg {
   pointer-events: none;
+  fill: white !important;
 }
 
 .sidebar .sidebar-body {

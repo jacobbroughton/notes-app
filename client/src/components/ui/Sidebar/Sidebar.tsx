@@ -561,14 +561,14 @@ function Sidebar() {
         </button>
 
         <button
-          className="theme-button"
+          className="sidebar-button theme-button"
           onClick={() => dispatch(setTheme(theme === "dark" ? "light" : "dark"))}
           title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
         >
           {theme === "dark" ? "☀️" : "🌙"}
         </button>
         <button
-          className="user-button"
+          className="sidebar-button user-button"
           onClick={() => {
             setUserMenuToggled(!userMenuToggled);
           }}
